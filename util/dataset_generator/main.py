@@ -2,6 +2,7 @@ from utils.extract_sentences import separate_sentences
 from generators.de_da_te_ta_generator import process_sentences as ps1
 from generators.mi_mu_generator import process_sentences as ps2
 from utils.sentences_to_csv import create_csv, append_to_csv
+from utils.shuffle_data import shuffle_data
 
 # Example text
 text = """Giriş bölümünde kelime işlemeyle ilgili bahsedilen çalışmaların yanında, cümleden anlam ve duygu çıkarılabilmesine yönelik çalışmalar da günümüzde ihtiyaç haline gelmiştir. İnsanlar giderek makinelerle daha fazla etkileşime girmektedir. Alpaslan Burak Eliaçık ve Nadia Erdoğan bu makalede anlatılan çalışmaya benzer duygu analizi çalışmasından bahsetmişlerdir[7]. Bu çalışmaya göre duygu sınıflandırması yöntemi iki ana dala ayrılmaktadır; makine öğrenmesi tabanlı yaklaşım ve sözlük tabanlı yaklaşım. Makine öğrenme tabanlı yaklaşım sınıflandırma sırasında makine öğrenme algoritmalarını ve dilbilimsel özellikleri kullanmaktadır. Sözlük tabanlı yaklaşım ise sınıflandırma sırasında önceden hazırlanmış duygu kavramlarından oluşan sözlüklerden yararlanmaktadır. Bazı çalışmalarda ise bu iki yönelimin melez bir yaklaşımı kullanılmaktadır.
@@ -66,16 +67,22 @@ Film uzun mu uzun, ara vermeden izlenmez.
 Şarkı hüzünlü mü hüzünlü, gözyaşlarımızı tutamıyoruz."""
 
 
-# Split the sentences
-correct = separate_sentences(text4)
+# # Split the sentences
+# correct = separate_sentences(text)
 
-# Generate variations
-wrong = ps2(correct)
+# # Generate variations
+# wrong = ps1(correct)
 
-# Display both original and transformed sentences
-for i, (correct_s, wrong_s) in enumerate(zip(correct, wrong), start=1):
-    print(f"source {i}: {wrong_s.strip()}")
-    print(f"target {i}: {correct_s.strip()}")
-    print()
+# # Display both original and transformed sentences
+# for i, (correct_s, wrong_s) in enumerate(zip(correct, wrong), start=1):
+#     print(f"source {i}: {wrong_s.strip()}")
+#     print(f"target {i}: {correct_s.strip()}")
+#     print()
 
-append_to_csv(wrong, correct, "dataset/mi_mu_errors.csv")
+# create_csv(wrong, correct, "dataset/de_da_te_ta_errors.csv")
+
+# text = open("dataset/mixed_errors.csv", "r").read()
+# wrong = separate_sentences(text)
+# create_csv(wrong, wrong, "dataset/mixed_errors.csv")
+
+shuffle_data("dataset/mi_mu_errors.csv", "dataset/mi_mu_errors.csv")
