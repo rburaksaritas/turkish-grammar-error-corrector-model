@@ -1,0 +1,27 @@
+@startuml
+
+!theme plain
+
+|User|
+start
+:Submit Text;
+|System|
+:Receive Text;
+:Analyze Text with\nFine-Tuned Model;
+:Generate Suggestions;
+|User|
+:View Suggestions;
+
+|System|
+if (Accepted?) then (yes)
+  :Update the input text
+  with corrections;
+else (no)
+  :Log feedback 
+  (optional);
+endif
+
+stop
+stop
+
+@enduml

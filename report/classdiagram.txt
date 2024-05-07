@@ -1,0 +1,49 @@
+@startuml
+
+class User {
+  - UserID: int
+  - Name: string
+  - Preferences: string
+  + SubmitText(): void
+  + ReviewSuggestions(Suggestions): void
+}
+
+class Text {
+  - TextID: int
+  - Content: string
+  - SubmissionTime: datetime
+  + GetContent(): string
+  + SetContent(content: string): void
+}
+
+class Suggestion {
+  - SuggestionID: int
+  - Description: string
+  - Correction: string
+  + ApplyCorrection(): void
+  + IgnoreSuggestion(): void
+}
+
+class Correction {
+  - OriginalText: string
+  - CorrectedText: string
+  + GetOriginal(): string
+  + GetCorrected(): string
+}
+
+class FineTunedModel {
+  - ModelID: int
+  - Version: string
+  - TrainingParameters: string
+  + AnalyzeText(text: Text): Suggestion[]
+  + GenerateSuggestions(text: Text): Suggestion[]
+}
+
+
+User "1"--"0..*" Text : "Submits"
+FineTunedModel "1"--  "0..*" Text: "Analyzes"
+Suggestion "1"--"1" Correction: "Leads to"
+FineTunedModel "1"--"0..*" Suggestion: "Provides"
+User "1"--"0..*" Suggestion: "Accepts or Rejects"
+
+@enduml

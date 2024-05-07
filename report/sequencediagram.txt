@@ -1,0 +1,17 @@
+@startuml
+
+!theme plain
+
+actor User
+participant "User Interface or Script" as UI
+participant "Fine-Tuned Model" as Model
+
+User -> UI : Submit Text
+UI -> Model : Send Text for Analysis
+Model -> Model : Analyze Text\nand Generate Suggestions
+Model --> UI : Send Suggestions
+UI --> User : Display Suggestions
+
+User -> UI : Decision
+
+@enduml

@@ -1,0 +1,38 @@
+@startuml
+
+!theme plain
+left to right direction
+
+package "User Interface" {
+  [Submit Text]
+  [View Suggestions]
+}
+
+package "Core Processing" {
+  [Text Analysis]
+  [Grammar Rule Checking]
+  [Suggestion Generation]
+}
+
+package "Data Management" {
+  [Dataset Handling]
+  [Model Training]
+  [Feedback Logging]
+}
+
+package "Model" {
+  [TURNA LLM]
+  [Fine-Tuned Model]
+}
+
+[Submit Text] --> [Text Analysis]
+[Text Analysis] --> [Grammar Rule Checking]
+[Grammar Rule Checking] --> [Suggestion Generation]
+[Suggestion Generation] --> [View Suggestions]
+
+[Dataset Handling] ..> [Model Training]
+[Feedback Logging] ..> [Model Training]
+[Model Training] ..> [Fine-Tuned Model]
+[Fine-Tuned Model] ..> [Text Analysis]
+
+@enduml

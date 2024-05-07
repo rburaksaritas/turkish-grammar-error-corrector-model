@@ -1,0 +1,45 @@
+@startuml
+
+!theme plain
+
+|Data Preparation and Training|
+start
+:Obtain Datasets;
+:Pre-process Datasets;
+note right: Cleaning, formatting, \nand segmenting data
+
+:Validate Data Quality;
+note right: Ensure data is accurate \nand representative
+
+:TURNA LLM Pre-training;
+note right: Utilize existing \nTURNA LLM capabilities
+
+:Fine-Tune Model with Datasets;
+note right: Tailor TURNA LLM for \ngrammar correction tasks
+
+:Evaluate Model Performance;
+note right: Test accuracy and \neffectiveness of the model
+
+:Deploy Fine-Tuned Model;
+note right: Make the model available \nfor user interactions
+
+|User|
+:User Submits Text;
+note right: Input for grammar checking
+
+|Model|
+:Receive Text Input;
+:Analyze Text with Fine-Tuned Model;
+note right: Grammar analysis and \ncorrection suggestions
+
+:Generate Grammar Suggestions;
+note right: Based on model's analysis
+
+|User|
+:Display Suggestions to User;
+:User Reviews and Accepts Suggestions;
+note right: User can accept or \nignore suggestions
+
+stop
+
+@enduml

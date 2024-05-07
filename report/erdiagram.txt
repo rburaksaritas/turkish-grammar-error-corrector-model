@@ -1,0 +1,49 @@
+@startuml
+
+!theme plain
+left to right direction
+
+entity "TURNA_LLM" as TurnaLLM {
+  description: text
+  version: varchar
+}
+
+entity "Datasets" as Datasets {
+  +id: int
+  source: varchar
+  size: int
+}
+
+entity "Fine-Tuned Model" as FineTunedModel {
+  +id: int
+  base_model: TURNA_LLM
+  tuning_details: text
+}
+
+entity "User" as User {
+  id: int
+  name: varchar
+  preferences: text
+}
+
+entity "Input" as Input {
+  id: int
+  user_id: int
+  text_content: varchar
+  submission_time: datetime
+}
+
+entity "Output of Suggestions" as OutputSuggestions {
+  id: int
+  input_id: int 
+  suggestion_text: text
+  confidence_score: float
+}
+
+TurnaLLM ||--o{ Datasets : trained with
+Datasets ||--o{ FineTunedModel : fine-tunes
+FineTunedModel ||--o{ OutputSuggestions : produces
+Input ||--o{ OutputSuggestions : leads to
+User ||--o{ Input : submits
+
+@enduml

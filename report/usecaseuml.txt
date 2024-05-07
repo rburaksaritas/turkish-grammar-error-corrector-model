@@ -1,0 +1,34 @@
+@startuml
+
+actor User
+actor System
+
+usecase "Input Text" as UC1
+usecase "Review Suggestions" as UC2
+usecase "Accept Correction" as UC3
+usecase "Reject Correction" as UC4
+usecase "Edit Text" as UC5
+
+User --> UC1
+User --> UC5
+UC1 --> UC2 : <<include>>
+UC2 --> UC3 : <<extend>>
+UC2 --> UC4 : <<extend>>
+
+usecase "Analyze Text" as UC6
+usecase "Provide Suggestions" as UC7
+usecase "Apply Correction" as UC8
+usecase "Use Fine-tuned Model" as UC9
+
+System --> UC6
+System --> UC8
+UC6 --> UC9 : <<includes>>
+UC9 --> UC7 : <<extends>>
+UC4 ..> UC6
+UC3 ..> UC8 
+UC5 ..> UC6
+UC7 ..> UC2
+UC1 ..> UC6
+
+
+@enduml
