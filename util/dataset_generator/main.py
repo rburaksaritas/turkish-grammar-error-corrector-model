@@ -85,4 +85,4 @@ Film uzun mu uzun, ara vermeden izlenmez.
 # wrong = separate_sentences(text)
 # create_csv(wrong, wrong, "dataset/mixed_errors.csv")
 
-shuffle_data("dataset/mi_mu_errors.csv", "dataset/mi_mu_errors.csv")
+# shuffle_data("dataset/mixed_errors.csv", "dataset/mi_mu_errors.csv")
