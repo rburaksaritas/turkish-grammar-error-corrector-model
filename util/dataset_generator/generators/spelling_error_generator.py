@@ -42,19 +42,20 @@ def substitute_letter(sentence):
         return sentence[:char_index] + substitute_letter + sentence[char_index+1:]
     return sentence
 
-def introduce_errors(sentence, error_rate=0.1):
+def introduce_errors(sentence, error_range=[2,5]):
     error_functions = [change_case, change_case_upper_to_lower, add_letter, remove_letter, swap_adjacent_letters, substitute_letter]
+    num_errors = random.randint(error_range[0], error_range[1]) 
+    chosen_functions = random.sample(error_functions, num_errors)
     new_sentence = sentence
-    for error_function in error_functions:
-        if random.random() < error_rate:
-            new_sentence = error_function(new_sentence)
+    for error_function in chosen_functions:
+        new_sentence = error_function(new_sentence)
     return new_sentence
 
 # Load the dataset
 df = pd.read_csv('dataset/correct.csv')
 
 df_errors = pd.DataFrame({
-    'source': df['target'].apply(lambda x: introduce_errors(x, error_rate=0.2)), 
+    'source': df['target'].apply(lambda x: introduce_errors(x, error_range=[2,5])), 
     'target': df['target'] 
 })
 
