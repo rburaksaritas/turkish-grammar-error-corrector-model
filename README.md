@@ -1,2 +1,2 @@
-# turkish-grammar-checker-and-corrector
+# turkish-grammar-error-generator
 CMPE492
